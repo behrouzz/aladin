@@ -3,9 +3,9 @@
 
 # Pythonic tool to work with Aladin Lite
 
-Check these links:<br/>
-    [Build an interactive sky map with Aladin Lite](https://aladin.cds.unistra.fr/AladinLite/doc/tutorials/interactive-finding-chart/)<br/>
-    [Image surveys](http://aladin.unistra.fr/hips/list)<br/>
+*Check these links:*<br/>
+* [Build an interactive sky map with Aladin Lite](https://aladin.cds.unistra.fr/AladinLite/doc/tutorials/interactive-finding-chart/)<br/>
+* [Image surveys](http://aladin.unistra.fr/hips/list)<br/>
 
 
 ## Example
