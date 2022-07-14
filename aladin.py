@@ -2,7 +2,7 @@
 
 
 keywords = ['@BS_TARGET', '@BS_FOV', '@BS_SURVEY', '@BS_WIDTH',
-            '@BS_HEIGHT', '@BS_SURBTNS', '@BS_MARKERS']
+            '@BS_HEIGHT', '@BS_SURBTNS', '@BS_MARKERS', '@BS_SIMBAD', '@BS_VIZIER']
 
 class Aladin:
     def __init__(self, target, fov=1, survey="P/DSS2/color", width=700, height=400):
@@ -17,6 +17,8 @@ class Aladin:
         self.height = height
         self.buttons = None
         self.markers = None
+        self.__simbad = None
+        self.__vizier = None
 
 
     def create(self):
@@ -29,7 +31,10 @@ class Aladin:
             self.html = self.html.replace('@BS_SURBTNS', self.buttons)
         if self.markers is not None:
             self.html = self.html.replace('@BS_MARKERS', self.markers)
-
+        if self.__simbad is not None:
+            self.html = self.html.replace('@BS_SIMBAD', self.__simbad)
+        if self.__vizier is not None:
+            self.html = self.html.replace('@BS_VIZIER', self.__vizier)
 
     def __add_survey_btn(self, value, id, label):
         return f'<input id="{id}" type="radio" name="survey" value="{value}"><label for="{id}">{label}<label>\n'
@@ -56,6 +61,26 @@ class Aladin:
         self.markers = self.markers + f"markerLayer.addSources([{tmp}]);\n"
         self.create()
 
+    def add_simbad(self, target=None, radius=None):
+        if target is None:
+            target = self.target
+        if radius is None:
+            radius = self.fov / 3
+        self.__simbad = f"aladin.addCatalog(A.catalogFromSimbad('{target}', {radius}, {{shape: 'plus', color: '#5d5', onClick: 'showTable'}}));"
+        self.create()
+        
+
+    def add_vizier(self, table=None, target=None , radius=None):
+        if table is None:
+            table = 'I/239/hip_main'
+        if target is None:
+            target = self.target
+        if radius is None:
+            radius = self.fov / 4
+        self.__vizier = f"aladin.addCatalog(A.catalogFromVizieR('{table}', '{target}', {radius}, {{shape: 'square', sourceSize: 8, color: 'red', onClick: 'showPopup'}}));"
+        self.create()
+        
+
     def save(self, filename='index.html'):
         html = self.html
         for i in keywords:
@@ -63,23 +88,3 @@ class Aladin:
         with open(filename, 'w') as f:
             f.write(html)
 
-
-
-a = Aladin(target='270.6003707 -23.0224839')
-
-buttons = [
-    ('P/2MASS/color', 'bs 2MASS'),
-    ('P/GLIMPSE360', 'bs GLIMPSE 360'),
-    ]
-
-markers = [
-    (270.332621, -23.078944, 'PSR B1758-23', 'Object type: Pulsar'),
-    (270.63206,  -22.905550, 'HD 164514',    'Object type: Star in cluster'),
-    (270.598121, -23.030819, 'HD 164492',    'Object type: Double star'),
-    ]
-
-a.add_survey_buttons(buttons)
-a.add_markers(markers)
-
-a.create()
-a.save('index.html')

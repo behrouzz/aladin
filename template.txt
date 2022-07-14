@@ -15,5 +15,7 @@
 	});
 	
 	@BS_MARKERS
+	@BS_SIMBAD
+	@BS_VIZIER
 	
 </script>

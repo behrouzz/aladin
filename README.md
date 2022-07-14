@@ -8,7 +8,7 @@
 * [Image surveys](http://aladin.unistra.fr/hips/list)<br/>
 
 
-## Example
+## Example 1 : add surveys and markers
 
 ```python
 from aladin import Aladin
@@ -33,5 +33,22 @@ a.create()
 a.save('index.html')
 ```
 
+
+## Example 2 : add SIMBAD and VizieR layers
+
+```python
+from aladin import Aladin
+
+a = Aladin(target='270.6003707 -23.0224839')
+
+a.add_simbad()
+
+a.add_vizier('I/239/hip_main')
+
+a.create()
+a.save('index.html')
+```
+
+You can pass optional arguments *target* and *radius* to both *add_simbad* and *add_vizier* methods.
 
 See more at [astrodatascience.net](https://astrodatascience.net/)
