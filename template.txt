@@ -15,7 +15,11 @@
 	});
 	
 	@BS_MARKERS
+
 	@BS_SIMBAD
 	@BS_VIZIER
+
+	@BS_IMGSUR
+	@BS_EPOIMG
 	
 </script>
