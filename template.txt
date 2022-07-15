@@ -8,7 +8,7 @@
 <script type="text/javascript" src="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
 
 <script type="text/javascript">
-	var aladin = A.aladin('#aladin-lite-div', {survey: "@BS_SURVEY", fov:@BS_FOV, target: "@BS_TARGET"});
+	var aladin = A.aladin('#aladin-lite-div', {survey: "@BS_SURVEY", fov:@BS_FOV, target: "@BS_TARGET", cooFrame: "ICRSd"});
 	
 	$('input[name=survey]').change(function() {
 		aladin.setImageSurvey($(this).val());
@@ -19,7 +19,7 @@
 	@BS_SIMBAD
 	@BS_VIZIER
 
-	@BS_IMGSUR
+	@BS_IMGOVLYR
 	@BS_EPOIMG
 	
 </script>

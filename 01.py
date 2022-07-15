@@ -26,7 +26,7 @@ hips_name = 'Southern-Ring-Nebula'
 hips_base_url = 'https://alasky.cds.unistra.fr/JWST/CDS_P_JWST_Southern-Ring-Nebula_NIRCam'
 hips_max_ord = 14
 
-a.add_image_survey(hips_id, hips_name, hips_base_url, hips_max_ord)
+a.add_image_overlayer(hips_id, hips_name, hips_base_url, hips_max_ord)
 
 #a.add_vizier('I/355/gaiadr3')
 
