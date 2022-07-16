@@ -84,10 +84,26 @@ class Aladin:
 ##    def add_image(self, url):
 ##        self.__image = f"\n\taladin.displayJPG('{url}');"
 
-    def add_image_overlayer(self, hips_id, hips_name, hips_base_url, hips_max_ord, coord_frame='equatorial', format='png'):
-        tmp = '\n\taladin.setOverlayImageLayer(aladin.createImageSurvey('
-        tmp = tmp + f"'{hips_id}', '{hips_name}', '{hips_base_url}', '{coord_frame}', {hips_max_ord}, {{imgFormat: '{format}'}}));\n"
-        self.__imgovlyr = tmp + '\taladin.getOverlayImageLayer().setAlpha(1.0);\n'
+    def add_image_overlayer(self, hips_id, hips_name, hips_base_url, hips_max_ord, coord_frame='equatorial', format='png', slider=False):
+        tmp = '\n\taladin.setOverlayImageLayer(aladin.createImageSurvey(' + \
+              f"'{hips_id}', '{hips_name}', '{hips_base_url}', '{coord_frame}', {hips_max_ord}, {{imgFormat: '{format}'}}));\n" + \
+              '\tvar ovim = aladin.getOverlayImageLayer();\n'
+        
+        if slider:
+            self.h999 = self.h999 + '\n<div class="slidecontainer">' + \
+                    f'  <input type="range" min="0" max="1" step="0.1" value="1" class="slider" id="myRange" style="width:{self.width}px";>\n' + \
+                    '  <p>Opacity: <span id="demo"></span></p>\n' + '</div>\n\n'
+            slider1 = '\n\tvar slider = document.getElementById("myRange");\n' + \
+                      '\tvar output = document.getElementById("demo");\n' + \
+                      '\toutput.innerHTML = slider.value;\n\n'
+            slider2 = '\n\tslider.oninput = function() {\n' + \
+                      '\t  output.innerHTML = this.value;\n' + \
+                      '\t  var ovim = aladin.getOverlayImageLayer();\n' + \
+                      '\t  ovim.setAlpha(this.value);\n' + '\t}\n'
+            tmp = tmp + '\tovim.setAlpha($(slider.value));\n\n'
+            self.__imgovlyr = slider1 + tmp + slider2
+        else:
+            self.__imgovlyr = tmp + '\tovim.setAlpha(1.0);\n'
         
 
     def save(self, filename='index.html'):
