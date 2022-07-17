@@ -6,6 +6,7 @@
 *Check these links:*<br/>
 * [Build an interactive sky map with Aladin Lite](https://aladin.cds.unistra.fr/AladinLite/doc/tutorials/interactive-finding-chart/)<br/>
 * [Image surveys](http://aladin.unistra.fr/hips/list)<br/>
+* [REST api example](https://aladin.cds.unistra.fr/AladinLite/v3-beta/?fov=0.06&ra=151.7573568&dec=-40.4364251&baseImageLayer=CDS%2FP%2FunWISE%2Fcolor-W2-W1W2-W1&overlayImageLayer=https%3A%2F%2Falasky.cds.unistra.fr%2FJWST%2FCDS_P_JWST_Southern-Ring-Nebula_NIRCam&cooFrame=ICRS)<br/>
 
 
 ## Example 1 : add surveys and markers

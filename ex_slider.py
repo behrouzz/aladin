@@ -9,6 +9,9 @@ buttons = [
 
 a.add_survey_buttons(buttons)
 
+a.add_simbad()
+a.add_vizier('I/355/gaiadr3')
+
 hips_id = 'CDS/P/JWST/Southern-Ring-Nebula/NIRCam'
 hips_name = 'Southern-Ring-Nebula'
 hips_base_url = 'https://alasky.cds.unistra.fr/JWST/CDS_P_JWST_Southern-Ring-Nebula_NIRCam'
